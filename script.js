@@ -183,14 +183,6 @@ $(document).ready(function () {
         biquadFilter.type = "peaking";
         biquadFilter.frequency.value = freq;
         biquadFilter.gain.value = 25;
-        //autoplay stuff
-        //        setTimeout(function () {
-        //            document.getElementById("audio1").play();
-        //        }, 4000);
-        //        setTimeout(function () {
-        //            document.getElementById("audio").play();
-        //        }, 6000);
-        //score stuff
         $("#give").animate({
             backgroundColor: "#006400"
         }, 1500);
