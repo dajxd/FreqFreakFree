@@ -1,13 +1,14 @@
 $(document).ready(function () {
     var input = document.getElementById("answer");
     input.value = "";
+    var jqfreq = $('#freq');
     var score = 0;
     var attempts = 0;
     var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
     var myAudio = document.getElementById('audio');
     var biquadFilter = audioCtx.createBiquadFilter();
     var gainNode = audioCtx.createGain();
-    source = audioCtx.createMediaElementSource(myAudio);
+    var source = audioCtx.createMediaElementSource(myAudio);
     source.connect(biquadFilter);
     biquadFilter.connect(gainNode);
     gainNode.connect(audioCtx.destination);
@@ -110,19 +111,19 @@ $(document).ready(function () {
         }
     };
     window.giveUp = function () {
-        $('#freq').text("The boost was at " + freq);
+        jqfreq.text("The boost was at " + freq);
         $('#give').animate({
             backgroundColor: "#aa0000"
         }, 500, function () {
 
-            $('#freq').css('zIndex', 10);
-            $('#freq').animate({
+            jqfreq.css('zIndex', 10);
+            jqfreq.animate({
                 opacity: 1
             }, 250, function () {
-                $('#freq').animate({
+                jqfreq.animate({
                     opacity: 0
                 }, 2500, function () {
-                    $('#freq').css('zIndex', 0);
+                    jqfreq.css('zIndex', 0);
                 })
             });
             $('#quit').animate({
@@ -139,16 +140,17 @@ $(document).ready(function () {
     
 
     function updateScore(phrase) {
-        scorediv = document.getElementById('score');
-        $('#freq').text("The boost was at " + freq);
-        $('#freq').css('zIndex', 10);
-        $('#freq').animate({
+        var scorediv = document.getElementById('score');
+
+        jqfreq.text("The boost was at " + freq);
+        jqfreq.css('zIndex', 10);
+        jqfreq.animate({
             opacity: 1
         }, 250, function () {
-            $('#freq').animate({
+            jqfreq.animate({
                 opacity: 0
             }, 2500, function () {
-                $('#freq').css('zIndex', 0);
+                jqfreq.css('zIndex', 0);
             })
         });
         if (score > 0) {
@@ -164,7 +166,7 @@ $(document).ready(function () {
     }
 
     function updateTries() {
-        triestext = document.getElementById('tries');
+        var triestext = document.getElementById('tries');
         attempts += 1;
         $(triestext).animate({
             opacity: 0
@@ -194,11 +196,11 @@ $(document).ready(function () {
         }, 1500);
     }
     window.rePlay = function () {
-
-        source = audioCtx.createMediaElementSource(myAudio);
-        source.connect(biquadFilter);
-        biquadFilter.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
+        // For some reason this makes it happier in FF:
+        // source = audioCtx.createMediaElementSource(myAudio);
+        // source.connect(biquadFilter);
+        // biquadFilter.connect(gainNode);
+        // gainNode.connect(audioCtx.destination);
         document.getElementById("audio1").play();
         console.log('played 1');
         setTimeout(function () {
