@@ -1,6 +1,3 @@
 # FreqFreakFree
-White noise frequency ear training. Mostly made for me and a few audio friends.
+White noise frequency ear training.
 
-Still sort of a baby after all these years, soon I'm going to responsify it so I can use it on my phone easily.
-
-https://www.davemcnamara.com/freqfreakfree/
